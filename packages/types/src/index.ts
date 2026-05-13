@@ -1,21 +1,29 @@
-export interface Post {
-  id: string;
+export enum UserRole {
+  ADMIN = "admin",
+  AUTHOR = "author",
+}
+
+export interface BlogAuthor {
+  _id: string;
+  name: string;
+  email: string;
+}
+
+export interface Blog {
+  _id: string;
   title: string;
-  slug: string;
   content: string;
-  authorId: string;
-  published: boolean;
+  status: "draft" | "published";
+  author: BlogAuthor;
   createdAt: string;
   updatedAt: string;
 }
 
 export interface User {
-  id: string;
-  email: string;
+  _id: string;
   name: string;
-}
-
-export enum UserRole {
-  ADMIN = "admin",
-  AUTHOR = "author",
+  email: string;
+  role: UserRole;
+  createdAt: string;
+  updatedAt: string;
 }

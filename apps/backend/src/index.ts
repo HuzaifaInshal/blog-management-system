@@ -1,12 +1,11 @@
-import type { Post } from "@repo/types";
+import type { Blog } from "@repo/types";
 
-const example: Post = {
-  id: "1",
+const example: Blog = {
+  _id: "1",
   title: "Hello World",
-  slug: "hello-world",
   content: "First post",
-  authorId: "u1",
-  published: true,
+  status: "published",
+  author: { _id: "u1", name: "Alice", email: "alice@example.com" },
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
 };
