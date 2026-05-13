@@ -7,6 +7,7 @@ import { Mail, Lock } from "lucide-react";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import TextInput from "@/components/ui/TextInput";
+import PasswordInput from "@/components/ui/PasswordInput";
 import { Button } from "@/components/ui/Button";
 import { useLogin } from "../services/authServices";
 import { handleMutationError } from "@/utils/handleMutationError";
@@ -79,10 +80,9 @@ export function LoginView() {
             error={formik.touched.email ? formik.errors.email : undefined}
           />
 
-          <TextInput
+          <PasswordInput
             label="Password"
             name="password"
-            type="password"
             placeholder="••••••••"
             startIcon={
               <Lock size={16} className="text-[var(--text-secondary)]" />

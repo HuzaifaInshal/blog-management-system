@@ -7,6 +7,7 @@ import { Mail, Lock, User } from "lucide-react";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import TextInput from "@/components/ui/TextInput";
+import PasswordInput from "@/components/ui/PasswordInput";
 import { Button } from "@/components/ui/Button";
 import { useRegister } from "../services/authServices";
 import { handleMutationError } from "@/utils/handleMutationError";
@@ -110,10 +111,9 @@ export function SignUpView() {
             error={formik.touched.email ? formik.errors.email : undefined}
           />
 
-          <TextInput
+          <PasswordInput
             label="Password"
             name="password"
-            type="password"
             placeholder="••••••••"
             startIcon={
               <Lock size={16} className="text-[var(--text-secondary)]" />
@@ -124,10 +124,9 @@ export function SignUpView() {
             error={formik.touched.password ? formik.errors.password : undefined}
           />
 
-          <TextInput
+          <PasswordInput
             label="Confirm password"
             name="confirmPassword"
-            type="password"
             placeholder="••••••••"
             startIcon={
               <Lock size={16} className="text-[var(--text-secondary)]" />
