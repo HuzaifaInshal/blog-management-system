@@ -20,7 +20,7 @@ function extractErrorMessage(error: Error | AxiosError): string {
       if (Array.isArray(responseMessage)) {
         const messages = responseMessage.flatMap(
           (each: { constraints?: DynamicObject }) =>
-            each?.constraints ? Object.values(each.constraints) : [],
+            each?.constraints ? Object.values(each.constraints) : []
         );
         if (messages.length > 0) return messages.join(", ");
       }

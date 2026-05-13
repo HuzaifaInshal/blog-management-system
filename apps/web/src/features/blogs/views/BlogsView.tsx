@@ -12,8 +12,14 @@ export function BlogsView() {
   const [search, setSearch] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const { data, isPending, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useGetBlogs({ search: searchQuery });
+  const {
+    data,
+    isPending,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useGetBlogs({ search: searchQuery });
 
   const blogs = data ? transformInfiniteData(data) : [];
 

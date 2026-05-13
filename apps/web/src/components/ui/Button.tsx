@@ -29,7 +29,7 @@ const buttonVariants = cva(
         ghost:
           "text-text-primary hover:bg-black/5 disabled:hover:bg-transparent",
         destructive: "",
-        link: "text-primary underline-offset-4 hover:underline"
+        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-8 py-2",
@@ -39,13 +39,13 @@ const buttonVariants = cva(
         icon: "size-9 rounded-full",
         xlg: "h-12 px-12 text-lg",
         full: "h-10 w-full",
-        fit: "h-10 w-fit px-0"
-      }
+        fit: "h-10 w-fit px-0",
+      },
     },
     defaultVariants: {
       variant: "default",
-      size: "default"
-    }
+      size: "default",
+    },
   }
 );
 

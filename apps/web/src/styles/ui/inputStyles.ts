@@ -10,17 +10,17 @@ export const inputStyles = cn(
   "px-3 py-2",
   "text-base text-text-primary",
   "placeholder:text-text-secondary",
-  "focus:outline-primary",
+  "focus:outline-primary"
 );
 
 export const startIconStyles = cn(
   "pointer-events-auto",
   "absolute left-3",
-  "inline-flex items-center",
+  "inline-flex items-center"
 );
 
 export const endIconStyles = cn(
   "pointer-events-auto",
   "absolute right-3",
-  "inline-flex items-center",
+  "inline-flex items-center"
 );

@@ -2,8 +2,8 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 
-import authRoutes from "./modules/auth/auth.route";
-import blogRoutes from "./modules/blog/blog.route";
+import authRoutes from "./modules/auth/auth.route.js";
+import blogRoutes from "./modules/blog/blog.route.js";
 
 const app = express();
 

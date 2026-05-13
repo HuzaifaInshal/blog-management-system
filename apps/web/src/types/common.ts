@@ -43,7 +43,7 @@ export type VoidFunctionWithArrayOfStringArg = (_args: string[]) => void;
 export type VoidFunctionWithStringOrNullArg = (_args: string | null) => void;
 
 export type VoidFunctionWithArrayOfStringOrStringArg = (
-  _args: string | string[],
+  _args: string | string[]
 ) => void;
 
 export type DynamicObjectWithObject = {

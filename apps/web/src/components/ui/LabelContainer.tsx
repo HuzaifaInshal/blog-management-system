@@ -18,7 +18,7 @@ const LabelContainer = ({
   htmlFor,
   required,
   className,
-  labelClassName
+  labelClassName,
 }: Props) => {
   return (
     <div className={cn("flex", "flex-col", "gap-2", "w-full", className)}>

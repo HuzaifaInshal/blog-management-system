@@ -5,7 +5,7 @@ import LabelContainer from "./LabelContainer";
 import {
   endIconStyles,
   inputStyles,
-  startIconStyles
+  startIconStyles,
 } from "@/styles/ui/inputStyles";
 
 const TextInput = ({

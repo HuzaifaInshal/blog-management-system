@@ -8,7 +8,7 @@ export interface AuthRequest extends Request {
 export const protect = (
   req: AuthRequest,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];

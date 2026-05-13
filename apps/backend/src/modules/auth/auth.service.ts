@@ -26,7 +26,7 @@ export const registerUser = async (body: any) => {
     process.env.JWT_SECRET as string,
     {
       expiresIn: "7d",
-    },
+    }
   );
 
   return {
@@ -58,7 +58,7 @@ export const loginUser = async (body: any) => {
     process.env.JWT_SECRET as string,
     {
       expiresIn: "7d",
-    },
+    }
   );
 
   return {
