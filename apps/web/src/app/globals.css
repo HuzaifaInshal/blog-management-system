@@ -1,26 +1,155 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "tw-animate-css";
 
 @theme inline {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-success: var(--success);
+  --color-destructive: var(--destructive);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background-secondary: var(--background-secondary);
+  --color-border-primary: var(--border-primary);
+  --color-input: var(--input);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --primary: #5178ff;
+  --secondary: #5178ff;
+  --text-primary: #000000;
+  --text-secondary: #6d6d6d;
+  --success: #00ce26;
+  --destructive: #da2020;
+  --background: #fefbfe;
+  --background-secondary: #f4f5f8;
+  --border-primary: #dcdfe4;
+  --input: oklch(1 0 0);
+  --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+/* ========================|| Button Ripple Animation ||======================== */
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ========================|| My Custom Animations ||======================== */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s ease-out;
+}
+
+/* ========================|| Custom Thin Scrollbar Variant ||======================== */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px;
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--custom-scrollbar);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--custom-scrollbar-2);
+}
+
+.scrollbar-h-3::-webkit-scrollbar {
+  height: 3px;
+}
+
+/* ========================|| Input Auto Fill Color Handler ||======================== */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--input) inset !important;
+  color: var(--text-primary) !important;
+}
+
+/* ========================|| Style to make the radix dropdown occupy full trigger width ||======================== */
+.DropdownMenuContent {
+  width: var(--radix-dropdown-menu-trigger-width);
+  max-height: var(--radix-dropdown-menu-content-available-height);
+}
+
+/* ========================|| Skeleton Shimmer ||======================== */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-shine {
+  animation: shine 1.2s infinite linear;
+}
+
+/* ========================|| Util Classes ||======================== */
+
+@layer components {
+  .center {
+    @apply items-center justify-center;
+  }
+
+  .shadow-glow {
+    --glow-color: #166dfb;
+    box-shadow: 0 0 15px var(--glow-color) !important;
+  }
+
+  .hover\:shadow-glow:hover {
+    --glow-color: #166dfb;
+    box-shadow: 0 0 15px var(--glow-color) !important;
+  }
+}
+
+@layer utilities {
+  .dropdown-content-width-full {
+    width: var(--radix-dropdown-menu-trigger-width);
+  }
+}
+
+/* ========================|| Logo Spin Animation ||======================== */
+
+@keyframes logoSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logo-spin {
+  animation: logoSpin 1.5s infinite cubic-bezier(0.34, 1.56, 0.64, 1);
 }
