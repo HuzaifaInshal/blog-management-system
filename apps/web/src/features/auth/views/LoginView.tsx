@@ -10,6 +10,7 @@ import TextInput from "@/components/ui/TextInput";
 import { Button } from "@/components/ui/Button";
 import { useLogin } from "../services/authServices";
 import { handleMutationError } from "@/utils/handleMutationError";
+import { setAuthToken } from "@/utils/auth";
 
 const validationSchema = yup.object({
   email: yup
@@ -43,7 +44,7 @@ export function LoginView() {
         },
         {
           onSuccess: (data) => {
-            localStorage.setItem("token", data.token);
+            setAuthToken(data.token);
             toast.success("Logged in successfully");
             router.push("/blogs");
           },
