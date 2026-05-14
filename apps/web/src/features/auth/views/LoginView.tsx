@@ -11,7 +11,7 @@ import PasswordInput from "@/components/ui/PasswordInput";
 import { Button } from "@/components/ui/Button";
 import { useLogin } from "../services/authServices";
 import { handleMutationError } from "@/utils/handleMutationError";
-import { setAuthToken } from "@/utils/auth";
+import { setAuthToken, setCurrentUser } from "@/utils/auth";
 
 const validationSchema = yup.object({
   email: yup
@@ -46,6 +46,7 @@ export function LoginView() {
         {
           onSuccess: (data) => {
             setAuthToken(data.token);
+            setCurrentUser(data.user);
             toast.success("Logged in successfully");
             router.push("/blogs");
           },

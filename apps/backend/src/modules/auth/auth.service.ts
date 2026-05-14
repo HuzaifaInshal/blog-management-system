@@ -29,9 +29,11 @@ export const registerUser = async (body: any) => {
     }
   );
 
+  const { password: _pw, ...safeUser } = user.toObject();
+
   return {
     token,
-    user,
+    user: safeUser,
   };
 };
 
@@ -61,8 +63,10 @@ export const loginUser = async (body: any) => {
     }
   );
 
+  const { password: _pw, ...safeUser } = user.toObject();
+
   return {
     token,
-    user,
+    user: safeUser,
   };
 };

@@ -5,7 +5,7 @@ import { getNextPageParam } from "@/utils/infiniteQueryUtils";
 import type { PaginationReq, PaginationRes } from "@/types/common";
 import type { BlogListItem, BlogDetail } from "../blogTypes";
 
-// ─── Get blogs (infinite) ─────────────────────────────────────────────────────
+// ─── Shared types ─────────────────────────────────────────────────────────────
 
 interface GetBlogsReq extends Omit<PaginationReq, "limit"> {
   search?: string;
@@ -16,6 +16,8 @@ interface GetBlogsRes extends PaginationRes {
   data: BlogListItem[];
 }
 
+// ─── Get all blogs (infinite, published only) ─────────────────────────────────
+
 export function useGetBlogs({ search, limit = 10 }: GetBlogsReq) {
   return useInfiniteQuery({
     queryFn: async ({ pageParam }) => {
@@ -25,6 +27,22 @@ export function useGetBlogs({ search, limit = 10 }: GetBlogsReq) {
       return res.data as GetBlogsRes;
     },
     queryKey: blogKeys.list({ search }),
+    getNextPageParam,
+    initialPageParam: 1,
+  });
+}
+
+// ─── Get my blogs (infinite, all statuses) ────────────────────────────────────
+
+export function useGetMyBlogs({ search, limit = 10 }: GetBlogsReq) {
+  return useInfiniteQuery({
+    queryFn: async ({ pageParam }) => {
+      const res = await axiosInstance.get("/blogs/my", {
+        params: { page: pageParam, limit, search },
+      });
+      return res.data as GetBlogsRes;
+    },
+    queryKey: blogKeys.my({ search }),
     getNextPageParam,
     initialPageParam: 1,
   });
@@ -61,15 +79,43 @@ interface CreateBlogReq {
   };
 }
 
-interface CreateBlogRes {
-  data: BlogListItem;
-  message: string;
-}
-
 export const useCreateBlog = () =>
   useMutation({
     mutationFn: async ({ payload }: CreateBlogReq) => {
       const res = await axiosInstance.post("/blogs", payload);
-      return res.data as CreateBlogRes;
+      return res.data;
+    },
+  });
+
+// ─── Update blog ──────────────────────────────────────────────────────────────
+
+interface UpdateBlogReq {
+  blogId: string;
+  payload: {
+    title?: string;
+    content?: string;
+    status?: "draft" | "published";
+  };
+}
+
+export const useUpdateBlog = () =>
+  useMutation({
+    mutationFn: async ({ blogId, payload }: UpdateBlogReq) => {
+      const res = await axiosInstance.put(`/blogs/${blogId}`, payload);
+      return res.data;
+    },
+  });
+
+// ─── Delete blog ──────────────────────────────────────────────────────────────
+
+interface DeleteBlogReq {
+  blogId: string;
+}
+
+export const useDeleteBlog = () =>
+  useMutation({
+    mutationFn: async ({ blogId }: DeleteBlogReq) => {
+      const res = await axiosInstance.delete(`/blogs/${blogId}`);
+      return res.data;
     },
   });

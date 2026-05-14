@@ -15,14 +15,14 @@ interface RegisterReq {
 interface RegisterRes {
   token: string;
   user: AuthUser;
-  message: string;
 }
 
 export const useRegister = () =>
   useMutation({
     mutationFn: async ({ payload }: RegisterReq) => {
       const res = await axiosInstance.post("/auth/register", payload);
-      return res.data as RegisterRes;
+      // Backend wraps response as { success, data: { token, user } }
+      return res.data.data as RegisterRes;
     },
   });
 
@@ -38,13 +38,13 @@ interface LoginReq {
 interface LoginRes {
   token: string;
   user: AuthUser;
-  message: string;
 }
 
 export const useLogin = () =>
   useMutation({
     mutationFn: async ({ payload }: LoginReq) => {
       const res = await axiosInstance.post("/auth/login", payload);
-      return res.data as LoginRes;
+      // Backend wraps response as { success, data: { token, user } }
+      return res.data.data as LoginRes;
     },
   });
