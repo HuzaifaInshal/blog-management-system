@@ -39,14 +39,11 @@ export const getBlogs = async (req: AuthRequest, res: Response) => {
   const page = Number(req.query.page) || 1;
   const limit = 10;
 
-  const search = req.query.search || "";
+  const search = String(req.query.search ?? "");
 
   const query = {
-    status: "published",
-    title: {
-      $regex: search,
-      $options: "i",
-    },
+    status: "published" as const,
+    ...(search && { title: { $regex: search, $options: "i" } }),
   };
 
   const blogs = await Blog.find(query)
