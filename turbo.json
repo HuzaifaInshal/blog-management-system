@@ -3,7 +3,12 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", "api/**"]
+    },
+    "backend#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "api/**"],
+      "env": ["MONGO_URI", "PORT", "JWT_SECRET", "NODE_ENV", "CLIENT_URL"]
     },
     "dev": {
       "dependsOn": ["^build"],
