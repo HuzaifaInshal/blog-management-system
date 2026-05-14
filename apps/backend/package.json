@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc",
+    "build": "tsup",
     "start": "node dist/server.js",
     "type-check": "tsc --noEmit"
   },
@@ -28,6 +28,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/morgan": "^1.9.10",
     "@types/node": "^20",
+    "tsup": "^8.5.1",
     "tsx": "^4.19.2",
     "typescript": "^5"
   }
